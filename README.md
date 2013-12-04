@@ -3,7 +3,7 @@ Projekt zespołowy z przedmiotu Testowanie Oprogramowania.
 
 Testujemy algorytm znajdowania najbliższego sąsiada (Nearest Neighbor) opisany w książce "Algorytmy. Almanach" G.T. Heineman'a
 
-Kod został pobrany z [serwera ftp Helionu](ftp://ftp.helion.pl/przyklady/algalm.zip)
+Kod został pobrany z serwera ftp Helionu: ftp://ftp.helion.pl/przyklady/algalm.zip
 
 Aktualny plan pracy:
 
