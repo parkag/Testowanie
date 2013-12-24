@@ -7,11 +7,26 @@ Kod został pobrany z serwera ftp Helionu: ftp://ftp.helion.pl/przyklady/algalm.
 
 Aktualny plan pracy:
 
-1.  Wydzielenie potrzebnych fragmentów kodu - algorytmy NearestNeighbor [GP - W trakcie]
-2.  Uruchomienie istniejących testów struktury kdTree i algorytmów NearestNeighbor [ ]
-3.  Utworzenie zestawu testów dla algorytmu BruteForceNearestNeighbor [ ]
-4.  Utworzenie zestawu testów dla struktury kdTree [ ]
-5.  Utworzenie zestawu testów dla algorytmu NearestNeighbor działającego na kdTree [ ]
-6.  Oprogramowanie wizualizacji [ ]
+1.  Wydzielenie potrzebnych fragmentów kodu i testów - algorytmy NearestNeighbor [GP - W trakcie]
 
-Instrukcje dotyczące konfiguracji testu, prowadzenia dokumentacji będą zamieszczane w tym pliku.
+2.  Uruchomienie istniejących testów struktury kdTree i algorytmów NearestNeighbor [ ]
+
+3.  Utworzenie zestawu testów dla algorytmu BruteForceNearestNeighbor
+    * Testy białoskrzynkowe z miarą pokrycia kodu [ ]
+    * Testy z wykorzystaniem obiektów pozornych [ ]
+
+4.  Utworzenie zestawu testów dla struktury kdTree i klas wykorzystywanych w kodzie algorytmów 
+    * Testy białoskrzynkowe z miarą pokrycia kodu [ ]
+    * Testy z wykorzystaniem obiektów pozornych [ ]
+
+5.  Utworzenie zestawu testów dla algorytmu NearestNeighbor działającego na kdTree
+    * Testy białoskrzynkowe z miarą pokrycia kodu [ ]
+    * Testy z wykorzystaniem obiektów pozornych [ ]
+
+6.  Oprogramowanie wizualizacji [GP - W trakcie]
+    * napisanie testów czarnoskrzynkowych
+    * instrukcja obsługi dla testerów
+
+7.  Opisanie cyklu życia testów [GP - W trakcie]
+
+Plany pracy oraz instrukcje dotyczące konfiguracji testów, prowadzenia dokumentacji będą zamieszczane w tym pliku.
