@@ -9,7 +9,7 @@ Aktualny plan pracy:
 
 1.  Wydzielenie potrzebnych fragmentów kodu i testów - algorytmy NearestNeighbor [GP - W trakcie]
 
-2.  Uruchomienie istniejących testów struktury kdTree i algorytmów NearestNeighbor [ ]
+2.  Utworzenie zestawu istniejących testów struktury kdTree i algorytmów NearestNeighbor [GP - W trakcie]
 
 3.  Utworzenie zestawu testów dla algorytmu BruteForceNearestNeighbor
     * Testy białoskrzynkowe z miarą pokrycia kodu [ ]
@@ -29,4 +29,11 @@ Aktualny plan pracy:
 
 7.  Opisanie cyklu życia testów [GP - W trakcie]
 
-Plany pracy oraz instrukcje dotyczące konfiguracji testów, prowadzenia dokumentacji będą zamieszczane w tym pliku.
+
+Mamy tu dużo paczek, z których niewiele już możemy usunąć. Nasze paczki to:
+
+   - Source Packages/gui
+   - Test Packages/suites
+   - Test Packages/(Tu będzie się działa znacząca większość naszej akcji)
+
+Dalsze plany pracy oraz instrukcje dotyczące konfiguracji testów, prowadzenia dokumentacji będą zamieszczane w tym pliku.
