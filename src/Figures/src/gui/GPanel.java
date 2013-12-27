@@ -8,6 +8,7 @@ import algs.example.gui.problems.nearestNeighbor.model.Model;
 import algs.model.FloatingPoint;
 import algs.model.IMultiPoint;
 import algs.model.nd.Hyperpoint;
+import algs.model.problems.nearestNeighbor.BruteForceNearestNeighbor;
 import algs.model.twod.TwoDPoint;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -27,6 +28,7 @@ public class GPanel extends JPanel {
     double x1, x2, y1, y2;
     double xFactor, yFactor, minX, minY, maxX, maxY;
     double dist, nearestx, nearesty;
+    double lastOperationTime;
 
     public GPanel() {
         setPreferredSize(new Dimension(300, 300));
@@ -45,6 +47,7 @@ public class GPanel extends JPanel {
     @Override
     public void paintComponent(Graphics sc) {
         super.paintComponent(sc);
+        //points
         if (pts != null) {
             for (int i = 0; i < pts.length; i++) {
                 IMultiPoint p = pts[i];
@@ -62,6 +65,7 @@ public class GPanel extends JPanel {
                 }
             }
         }
+        //reference point with coordinates
         if (ref != null) {
             double x = ref.getCoordinate(1);  // x
             double y = getHeight() - ref.getCoordinate(2);  // y
@@ -73,6 +77,7 @@ public class GPanel extends JPanel {
             String coords = "(" + reforig.getCoordinate(1) + "," + reforig.getCoordinate(2) + ")";
             sc.drawString(coords, (int) x + 5, (int) y - 25);
         }
+        //line from reference point to the nearest point
         sc.drawLine((int) x1, getHeight() - (int) y1, (int) x2, getHeight() - (int) y2);
     }
 
@@ -144,12 +149,12 @@ public class GPanel extends JPanel {
         return retVal;
     }
 
-    void calculateElement(IMultiPoint reforig, IMultiPoint[] pts, String method) {
+    void calculateElement(IMultiPoint reforig, IMultiPoint[] pts, String method, boolean calculateTime) {
         IMultiPoint norig;
         if (method.equals("BF")) {
-            norig = findNearestBF(reforig);
+            norig = findNearestBF(reforig, calculateTime);
         } else {
-            norig = calculateNearest(reforig);
+            norig = findNearestKD(reforig, calculateTime);
         }
 
         nearestx = norig.getCoordinate(1);
@@ -165,34 +170,46 @@ public class GPanel extends JPanel {
     }
 
     //kd tree approach
-    public IMultiPoint calculateNearest(final IMultiPoint pt) {
-        Model model = new Model();
-        model.setItems(orig);
-        model.computeNearest(pt);
+    public IMultiPoint findNearestKD(final IMultiPoint pt, boolean calculateTime) {
+        Model model = null;
+        if (calculateTime == true) {
+            Long startTime = System.nanoTime();
+            model = new Model();
+            model.setItems(orig);
+            for (int i = 0; i < 10000; i++) {
+                 model.computeNearest(pt);
+            }
+            lastOperationTime = (System.nanoTime() - startTime) / Math.pow(10, 9) / 10000;
+            System.out.println(lastOperationTime);
+        } else {
+            model = new Model();
+            model.setItems(orig);
+            model.computeNearest(pt);
+        }
         return model.getNearest();
     }
 
-    public Hyperpoint findNearestBF(final IMultiPoint pt) {
-        double smallest = Double.POSITIVE_INFINITY;
+    public Hyperpoint findNearestBF(final IMultiPoint pt, boolean calculateTime) {
         IMultiPoint result = null;
-
-        // for all points in this tree, compute smallest distance. Once this is done,
-        // all points within this region will have been checked for smallest distance, and
-        // result[0] will contain the lucky neighbor (so far) which is determined to have
-        // the distance smallest[0].
-        for (IMultiPoint p : orig) {
-            double d = p.distance(pt);
-            if (FloatingPoint.lesser(d, smallest)) {
-                smallest = d;
-                result = p;
+        if (calculateTime == true) {
+            Long startTime = System.nanoTime();
+            BruteForceNearestNeighbor BF = new BruteForceNearestNeighbor(orig);
+            for (int i = 0; i < 10000; i++) {
+                result = BF.nearest(pt);
             }
+            lastOperationTime = (System.nanoTime() - startTime) / Math.pow(10, 9) / 10000;
+            System.out.println(lastOperationTime);
+        } else {
+            BruteForceNearestNeighbor BF = new BruteForceNearestNeighbor(orig);
+            result = BF.nearest(pt);
         }
         return (Hyperpoint) result;
+
     }
 
-    void calculateElement(String method) {
+    void calculateElement(String method, boolean calculateTime) {
         if (orig != null && reforig != null) {
-            calculateElement(reforig, orig, method);
+            calculateElement(reforig, orig, method, calculateTime);
         }
     }
 }

@@ -7,7 +7,6 @@ package gui;
 import algs.model.IMultiPoint;
 import algs.model.nd.Hyperpoint;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.Locale;
 import java.util.Scanner;
 import java.util.logging.Level;
@@ -50,6 +49,8 @@ public class GuiFrame extends javax.swing.JFrame {
         YField = new javax.swing.JTextField();
         fileLabel = new javax.swing.JLabel();
         canvas = new gui.GPanel();
+        jLabel3 = new javax.swing.JLabel();
+        timeBox = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Algorytm najbliższego sąsiada - testowanie czarnoskrzynkowe");
@@ -114,45 +115,61 @@ public class GuiFrame extends javax.swing.JFrame {
         canvas.setLayout(canvasLayout);
         canvasLayout.setHorizontalGroup(
             canvasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 497, Short.MAX_VALUE)
+            .addGap(0, 508, Short.MAX_VALUE)
         );
         canvasLayout.setVerticalGroup(
             canvasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 511, Short.MAX_VALUE)
         );
+
+        jLabel3.setText("Zbiór danych:");
+
+        timeBox.setText("Mierz czas");
+        timeBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                timeBoxActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addComponent(jScrollPane1)
+                .addGap(523, 523, 523))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(algoChoiceBox, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(YField, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(fileLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(4, 4, 4))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(XLabel)
-                                        .addGap(1, 1, 1)
-                                        .addComponent(XField, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(YLabel))
                                     .addComponent(jLabel1)
                                     .addComponent(LoadButton)
-                                    .addComponent(runButton)
                                     .addComponent(jLabel2))
-                                .addGap(0, 97, Short.MAX_VALUE))
-                            .addComponent(fileLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(33, 33, 33))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(runButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(timeBox)))
+                        .addGap(18, 18, 18))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
-                .addComponent(canvas, javax.swing.GroupLayout.PREFERRED_SIZE, 499, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(XLabel)
+                        .addGap(1, 1, 1)
+                        .addComponent(XField, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(YLabel)
+                        .addGap(6, 6, 6)
+                        .addComponent(YField, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(7, 7, 7)))
+                .addComponent(canvas, javax.swing.GroupLayout.PREFERRED_SIZE, 510, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -160,16 +177,18 @@ public class GuiFrame extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(canvas, javax.swing.GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE)
+                    .addComponent(canvas, javax.swing.GroupLayout.DEFAULT_SIZE, 513, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(LoadButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(fileLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(fileLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3))
                         .addGap(18, 18, 18)
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(algoChoiceBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -177,10 +196,12 @@ public class GuiFrame extends javax.swing.JFrame {
                             .addComponent(XField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(YLabel)
                             .addComponent(YField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(runButton)
+                            .addComponent(timeBox))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(runButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jScrollPane1)))
                 .addContainerGap())
         );
 
@@ -188,16 +209,32 @@ public class GuiFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void runButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_runButtonActionPerformed
-        double[] r = {Double.parseDouble(XField.getText()), 
-                      Double.parseDouble(YField.getText())};
+        double[] r = {0.0, 0.0};
+        try{
+            r[0] = Double.parseDouble(XField.getText());
+            r[1] = Double.parseDouble(YField.getText());
+        }catch(NumberFormatException e){
+            XField.setText(String.valueOf(0.0000));
+            YField.setText(String.valueOf(0.0000));
+            r[0] = 0.0;
+            r[1] = 0.0;
+            resultArea.append("Niewłaściwy format współrzędnych punktu odniesienia. "
+                               + "Ustawiam (0,0)\n");
+        }
         canvas.setRef(new Hyperpoint(r));
-        if(algoChoiceBox.getSelectedIndex() == 0)
-            canvas.calculateElement("BF");
-        else
-            canvas.calculateElement("KD");
+        if(algoChoiceBox.getSelectedIndex() == 0){
+            canvas.calculateElement("BF", timeBox.isSelected());
+            resultArea.append("Metoda BruteForce\n");
+        }else{
+            canvas.calculateElement("KD", timeBox.isSelected());
+            resultArea.append("Metoda KD-drzewo");
+        }
+        resultArea.append("Najbliższy: ("+canvas.nearestx+","+canvas.nearesty+")\n");
+        resultArea.append("Odległość: "+canvas.dist+"\n");
         
-        resultArea.append("Nearest: ("+canvas.nearestx+","+canvas.nearesty+")\n");
-        resultArea.append("Dist: "+canvas.dist+"\n");
+        if(timeBox.isSelected()==true)
+            resultArea.append("Czas wykonania operacji: "+canvas.lastOperationTime+"\n");
+        
         canvas.repaint();
     }//GEN-LAST:event_runButtonActionPerformed
 
@@ -225,14 +262,14 @@ public class GuiFrame extends javax.swing.JFrame {
                 int i=0;
                 while (textfile.hasNextDouble()){
                     double[] r = {textfile.nextDouble(), textfile.nextDouble()};
-                    System.err.println(r[0]+" "+ r[1]);
+                    //System.err.println(r[0]+" "+ r[1]);
                     nativeItems[i] = new Hyperpoint(r);
-                    
-                    resultArea.append(nativeItems[i]+"\n");
                     i++;
                 }
-            } catch (FileNotFoundException ex) {
-                Logger.getLogger(GuiFrame.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (Exception e) {
+                Logger.getLogger(GuiFrame.class.getName()).log(Level.SEVERE, null, e);
+                resultArea.setText("Nie udało się wczytać pliku " + file.getName());
+                fileLabel.setText("");
             }
             canvas.setIPoints(nativeItems);
             canvas.repaint();
@@ -242,6 +279,10 @@ public class GuiFrame extends javax.swing.JFrame {
     private void algoChoiceBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_algoChoiceBoxActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_algoChoiceBoxActionPerformed
+
+    private void timeBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_timeBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_timeBoxActionPerformed
     
 
     /**
@@ -291,9 +332,11 @@ public class GuiFrame extends javax.swing.JFrame {
     private javax.swing.JLabel fileLabel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea resultArea;
     private javax.swing.JButton runButton;
+    private javax.swing.JCheckBox timeBox;
     // End of variables declaration//GEN-END:variables
     private IMultiPoint[] nativeItems;
 }
