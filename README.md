@@ -7,7 +7,7 @@ Kod został pobrany z serwera ftp Helionu: ftp://ftp.helion.pl/przyklady/algalm.
 
 Aktualny plan pracy:
 
-1.  Wydzielenie potrzebnych fragmentów kodu i testów - algorytmy NearestNeighbor [GP - W trakcie]
+1.  Wydzielenie potrzebnych fragmentów kodu i testów - algorytmy NearestNeighbor [GP - OK]
 
 2.  Utworzenie zestawu istniejących testów struktury kdTree i algorytmów NearestNeighbor [GP - W trakcie]
 
@@ -23,7 +23,7 @@ Aktualny plan pracy:
     * Testy białoskrzynkowe z miarą pokrycia kodu [ ]
     * Testy z wykorzystaniem obiektów pozornych [ ]
 
-6.  Oprogramowanie wizualizacji [GP - W trakcie]
+6.  Oprogramowanie wizualizacji [GP - OK]
     * napisanie testów czarnoskrzynkowych
     * instrukcja obsługi dla testerów
 

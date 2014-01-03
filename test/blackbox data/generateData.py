@@ -2,7 +2,7 @@ from __future__ import print_function
 from math import *
 
 #filename = 'circle'
-npts = 100000
+npts = 50000
 
 #f = open(filename, 'w')
 

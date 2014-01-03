@@ -210,31 +210,36 @@ public class GuiFrame extends javax.swing.JFrame {
 
     private void runButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_runButtonActionPerformed
         double[] r = {0.0, 0.0};
-        try{
+        try {
             r[0] = Double.parseDouble(XField.getText());
             r[1] = Double.parseDouble(YField.getText());
-        }catch(NumberFormatException e){
+        } catch (NumberFormatException e) {
             XField.setText(String.valueOf(0.0000));
             YField.setText(String.valueOf(0.0000));
             r[0] = 0.0;
             r[1] = 0.0;
             resultArea.append("Niewłaściwy format współrzędnych punktu odniesienia. "
-                               + "Ustawiam (0,0)\n");
+                    + "Ustawiam (0,0)\n");
         }
         canvas.setRef(new Hyperpoint(r));
-        if(algoChoiceBox.getSelectedIndex() == 0){
-            canvas.calculateElement("BF", timeBox.isSelected());
-            resultArea.append("Metoda BruteForce\n");
-        }else{
-            canvas.calculateElement("KD", timeBox.isSelected());
-            resultArea.append("Metoda KD-drzewo");
+        try {
+            if (algoChoiceBox.getSelectedIndex() == 0) {
+                canvas.calculateElement("BF", timeBox.isSelected());
+                resultArea.append("Metoda BruteForce\n");
+            } else {
+                canvas.calculateElement("KD", timeBox.isSelected());
+                resultArea.append("Metoda KD-drzewo\n");
+            }
+            resultArea.append("Najbliższy: (" + canvas.nearestx + "," + canvas.nearesty + ")\n");
+            resultArea.append("Odległość: " + canvas.dist + "\n");
+        } catch (Exception e) {
+            resultArea.append(e.toString());
         }
-        resultArea.append("Najbliższy: ("+canvas.nearestx+","+canvas.nearesty+")\n");
-        resultArea.append("Odległość: "+canvas.dist+"\n");
-        
-        if(timeBox.isSelected()==true)
-            resultArea.append("Czas wykonania operacji: "+canvas.lastOperationTime+"\n");
-        
+        if (timeBox.isSelected() == true) {
+            String opTime = String.format("%.2e", canvas.lastOperationTime);
+            resultArea.append("Czas wykonania operacji: " + opTime + "s.\n");
+        }
+
         canvas.repaint();
     }//GEN-LAST:event_runButtonActionPerformed
 
@@ -259,8 +264,8 @@ public class GuiFrame extends javax.swing.JFrame {
                 textfile.useLocale(Locale.US);
                 nativeItems = new IMultiPoint[textfile.nextInt()];
                 System.err.println(nativeItems.length);
-                int i=0;
-                while (textfile.hasNextDouble()){
+                int i = 0;
+                while (textfile.hasNextDouble()) {
                     double[] r = {textfile.nextDouble(), textfile.nextDouble()};
                     //System.err.println(r[0]+" "+ r[1]);
                     nativeItems[i] = new Hyperpoint(r);
@@ -283,7 +288,6 @@ public class GuiFrame extends javax.swing.JFrame {
     private void timeBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_timeBoxActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_timeBoxActionPerformed
-    
 
     /**
      * @param args the command line arguments
@@ -319,7 +323,6 @@ public class GuiFrame extends javax.swing.JFrame {
             }
         });
     }
-    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton LoadButton;
     private javax.swing.JTextField XField;
