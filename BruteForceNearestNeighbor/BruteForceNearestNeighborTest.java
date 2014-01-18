@@ -24,7 +24,8 @@ public class BruteForceNearestNeighborTest {
     
     public BruteForceNearestNeighborTest() {
     }
-    
+    IMultiPoint points[] = new IMultiPoint[100];
+
     
     @BeforeClass
     public static void setUpClass() {
@@ -36,6 +37,11 @@ public class BruteForceNearestNeighborTest {
     
     @Before
     public void setUp() {
+       	for(int i =0 ; i<100; i++)
+    	{
+    		TwoDPoint tdp= new TwoDPoint(0,i);
+    		points[i]=tdp;
+    	}
     	
     }
     
@@ -50,20 +56,32 @@ public class BruteForceNearestNeighborTest {
     public void testNearest() {
        // System.out.println("nearest");
         IMultiPoint x = new TwoDPoint(10,10) ;
-        //IMultiPoint points[]=null;
-        
-        IMultiPoint points[] = new IMultiPoint[100];
-    	for(int i =0 ; i<100; i++)
-    	{
-    		TwoDPoint tdp= new TwoDPoint(0,i);
-    		points[i]=tdp;
-    	}
-    	
+          
         BruteForceNearestNeighbor instance = new BruteForceNearestNeighbor(points);
         IMultiPoint expResult =  new TwoDPoint(0,10);
         IMultiPoint result = instance.nearest(x);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-      //  fail("Z�e dane");
+      //  fail("Złe dane");
     }
+    
+    @Test
+    public void testBruteForceNearestNeighbor() {
+    	
+    	points= new IMultiPoint[0]; 
+    	try
+    	{
+    		BruteForceNearestNeighbor instance = new BruteForceNearestNeighbor(points);
+    		fail("BruteForce nie działa jak powinien - dla długości 0");
+    	}
+    	catch (IllegalArgumentException e) { }
+    	
+    	try
+    	{
+    		BruteForceNearestNeighbor instance = new BruteForceNearestNeighbor(null);
+    		fail("BruteForce nie działa jak powinien - dla null");
+    	}
+    	catch (IllegalArgumentException e) { }
+    }
+   
 }
