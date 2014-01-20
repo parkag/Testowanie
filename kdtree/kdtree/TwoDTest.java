@@ -276,4 +276,82 @@ public class TwoDTest extends TestCase {
     	assertEquals(raw[0],tab[0]);
     	assertEquals(raw[1],tab[1]);
     }
+    
+    ///////////////////
+    	
+    	@Test
+    	public void testTwoDTree(){
+    		TwoDPoint pt = new TwoDPoint(10, 30);
+    		TwoDPoint pt1 = new TwoDPoint(10, 31);
+    		TwoDPoint pt2= new TwoDPoint(9, 30);
+    		TwoDPoint pt3 = new TwoDPoint(9, 29);
+    		TwoDPoint targetpt = new TwoDPoint(30, 30);
+    		VerticalNode n = new VerticalNode(pt);
+    		TwoDTree tdt= new TwoDTree();
+    		
+    		
+    		try{
+    			tdt.insert(null);
+    			fail("");
+    		}
+    		catch(IllegalArgumentException e){
+    			
+    		}
+    		try{
+    			tdt.parent(null);
+    			fail("");
+    		}
+    		catch(IllegalArgumentException e){
+    			
+    		}
+    		
+			assertNull(tdt.parent(pt));
+    		
+			tdt.insert(pt);
+			assertEquals(tdt.getRoot(),tdt.parent(pt));
+			tdt.insert(pt2);
+			assertEquals(tdt.getRoot(),tdt.parent(pt));
+			tdt.insert(pt1);
+			assertEquals(tdt.getRoot().getAbove(),tdt.parent(pt));
+			tdt.insert(pt3);
+			tdt.parent(pt3);
+			assertEquals(tdt.getRoot().getAbove(),tdt.parent(pt));
+			
+			
+			tdt.setRoot(n);
+			assertEquals(n,tdt.getRoot());
+			
+			//nearest test
+			tdt.setRoot(null);
+			assertNull(tdt.nearest(targetpt));
+			
+			tdt.insert(pt);
+			tdt.insert(pt2);
+			tdt.insert(pt1);
+			tdt.insert(pt3);
+			//tdt.setRoot(n);
+			assertNull(tdt.nearest(null));
+			assertEquals(pt,tdt.nearest(targetpt));
+			
+			assertEquals(pt3,tdt.nearest(new TwoDPoint(9, 0)));
+			
+			//toString
+			
+			tdt.setRoot(null);
+			assertEquals("",tdt.toString());
+			
+			tdt.insert(pt);
+			
+			
+			assertEquals("V:<10.0,30.0 region:[-Infinity,-Infinity : Infinity,Infinity]>",tdt.toString());
+			
+			tdt.insert(pt2);
+			tdt.insert(pt1);
+			assertEquals("H:<9.0,30.0 region:[-Infinity,-Infinity : 10.0,Infinity]>V:<10.0,30.0 region:[-Infinity,-Infinity : Infinity,Infinity]>H:<10.0,31.0 region:[10.0,-Infinity : Infinity,Infinity]>",tdt.toString());
+    		
+			//updateRectangles()
+			
+			tdt.updateRectangles();
+			assertEquals(tdt.getRoot().getAbove(),tdt.parent(pt));
+    	}
 }
