@@ -12,15 +12,15 @@ Aktualny plan pracy:
 2.  Utworzenie zestawu istniejących testów struktury kdTree i algorytmów NearestNeighbor [GP - OK]
 
 3.  Utworzenie zestawu testów dla algorytmu BruteForceNearestNeighbor
-    * Testy białoskrzynkowe z miarą pokrycia kodu [DT - W trakcie]
+    * Testy białoskrzynkowe z miarą pokrycia kodu [DT - OK]
     * Testy z wykorzystaniem obiektów pozornych [ ]
 
 4.  Utworzenie zestawu testów dla struktury kdTree i klas wykorzystywanych w kodzie algorytmów 
-    * Testy białoskrzynkowe z miarą pokrycia kodu [DT - W trakcie]
+    * Testy białoskrzynkowe z miarą pokrycia kodu [DT - OK]
     * Testy z wykorzystaniem obiektów pozornych [ ]
 
 5.  Utworzenie zestawu testów dla algorytmu NearestNeighbor działającego na kdTree
-    * Testy białoskrzynkowe z miarą pokrycia kodu [DT - W trakcie]
+    * Testy białoskrzynkowe z miarą pokrycia kodu [DT - OK]
     * Testy z wykorzystaniem obiektów pozornych [ ]
 
 6.  Oprogramowanie wizualizacji [GP - OK]
