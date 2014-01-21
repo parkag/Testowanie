@@ -1,4 +1,4 @@
-package tests.algs.model.tests.kdtree;
+package test.kdtree.kdtree;
 
 import junit.framework.TestCase;
 

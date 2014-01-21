@@ -1,4 +1,4 @@
-package tests.algs.model.tests.kdtree;
+package test.kdtree.kdtree;
 
 import java.util.ArrayList;
 
@@ -107,7 +107,6 @@ public class KDTest extends TestCase {
 
     @Test
     public void testRootSetter() {
-        // just here for closure.
         KDTree tt = new KDTree(2);
         DimensionalNode n = new DimensionalNode(1, new TwoDPoint(90, 120));
         tt.setRoot(n);
