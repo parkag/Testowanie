@@ -4,14 +4,14 @@
  */
 package suites;
 
+import org.junit.runner.RunWith;
+import org.junit.runners.Suite;
 import algs.model.tests.fp.ExampleFloatingPointTest;
 import algs.model.tests.kdtree.HyperpointTest;
 import algs.model.tests.kdtree.KDExtendedTest;
 import algs.model.tests.kdtree.KDTest;
 import algs.model.tests.kdtree.TwoDTest;
 import algs.model.tests.twod.TwoDPointTest;
-import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
 /**
  *
  * @author greg
@@ -25,7 +25,7 @@ import org.junit.runners.Suite;
         KDTest.class,
         KDExtendedTest.class
 })
+
 public class AuthorSuite {
-    
 }
 
